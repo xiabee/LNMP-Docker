@@ -1,5 +1,27 @@
 version: "3"
 services:
+    mysql:
+        image: mysql:8.0.22
+        volumes: 
+            - ./mysql/mysql.cnf:/etc/mysql/my.cnf
+            - "$PWD/flag:/etc/mysql/flag/flag:ro"
+            # 挂载flag，设置为只读
+            - ./mysql/init:/docker-entrypoint-initdb.d/
+            # docker-entrypoint-initdb.d目录下的文件会自动执行
+        environment: 
+            MYSQL_ROOT_PASSWORD: Xiao
+            # 设置管理员密码
+            MYSQL_USER: test
+            MYSQL_PASSWORD: test
+            # 创建用户
+            TZ: Asia/Shanghai
+            LANG: C.UTF-8
+        restart: always
+        ports:
+            - "3312:3306"
+        networks:
+            - default
+
     nginx:
         image: nginx:latest
         volumes:
@@ -27,28 +49,6 @@ services:
         environment: 
             TZ: Asia/Shanghai
         restart: always
-        networks:
-            - default
-
-    mysql:
-        image: mysql:8.0.22
-        volumes: 
-            - ./mysql/mysql.cnf:/etc/mysql/my.cnf
-            - "$PWD/flag:/etc/mysql/flag/flag:ro"
-            # 挂载flag，设置为只读
-            - ./mysql/init:/docker-entrypoint-initdb.d/
-            # docker-entrypoint-initdb.d目录下的文件会自动执行
-        environment: 
-            MYSQL_ROOT_PASSWORD: Xiao
-            # 设置管理员密码
-            MYSQL_USER: test
-            MYSQL_PASSWORD: test
-            # 创建用户
-            TZ: Asia/Shanghai
-            LANG: C.UTF-8
-        restart: always
-        ports:
-            - "3312:3306"
         networks:
             - default
 

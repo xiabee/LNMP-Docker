@@ -4,7 +4,7 @@ highlight_file(__FILE__);
 $conn = mysqli_connect('mysql', 'test', 'test', 'security');
 if (mysqli_connect_errno($conn)) 
 {
-    die("Could not connect: " . mysqli_connect_error()); 
+    die("Could not connect, please wait a moment." . mysqli_connect_error()); 
 }  
 
 if (isset($_GET['id'])) {
