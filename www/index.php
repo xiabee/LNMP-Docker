@@ -1,7 +1,7 @@
 <?php
 // error_reporting(0);
 highlight_file(__FILE__);
-$conn = mysqli_connect('sql_mysql', 'test', 'test', 'security');
+$conn = mysqli_connect('mysql', 'test', 'test', 'security');
 if (mysqli_connect_errno($conn)) 
 {
     die("Could not connect: " . mysqli_connect_error()); 

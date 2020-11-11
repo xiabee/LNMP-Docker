@@ -22,8 +22,7 @@ services:
             - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
             - ./www:/var/www/html 
             # nginx和php必须同时映射才能通信
-            - "$PWD/flag:/var/www/html/include/flag:ro"
-            # 挂载flag，此行根据CTFd插件更改挂载目录
+
             
         environment: 
             TZ: Asia/Shanghai
@@ -33,9 +32,10 @@ services:
 
     mysql:
         image: mysql:8.0.22
-        container_name: sql_mysql
         volumes: 
             - ./mysql/mysql.cnf:/etc/mysql/my.cnf
+            - "$PWD/flag:/etc/mysql/flag/flag:ro"
+            # 挂载flag，设置为只读
             - ./mysql/init:/docker-entrypoint-initdb.d/
             # docker-entrypoint-initdb.d目录下的文件会自动执行
         environment: 
