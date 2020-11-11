@@ -17,8 +17,6 @@ services:
             TZ: Asia/Shanghai
             LANG: C.UTF-8
         restart: always
-        ports:
-            - "3312:3306"
         networks:
             - default
 
