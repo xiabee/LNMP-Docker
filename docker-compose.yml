@@ -1,5 +1,34 @@
 version: "3"
 services:
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+            - ./www:/var/www/html
+            # nginx和php必须同时映射才能通信
+        restart: always
+        environment: 
+            TZ: Asia/Shanghai
+        ports:
+            - "9999:80"
+        networks:
+            - default
+    
+    php:
+        image: xiabee/php7.3-fpm
+        build: ./php
+        volumes: 
+            - ./php/php.ini:/usr/local/etc/php/php.ini
+            - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
+            - ./www:/var/www/html 
+            # nginx和php必须同时映射才能通信
+
+            
+        environment: 
+            TZ: Asia/Shanghai
+        restart: always
+        networks:
+            - default
     mysql:
         image: mysql:8.0.22
         volumes: 
@@ -16,36 +45,6 @@ services:
             # 创建用户
             TZ: Asia/Shanghai
             LANG: C.UTF-8
-        restart: always
-        networks:
-            - default
-
-    nginx:
-        image: nginx:latest
-        volumes:
-            - ./nginx:/etc/nginx/conf.d
-            - ./www:/var/www/html
-            # nginx和php必须同时映射才能通信
-        restart: always
-        environment: 
-            TZ: Asia/Shanghai
-        ports:
-            - "80:80"
-        networks:
-            - default
-    
-    php:
-        image: xiabee/php7.3-fpm
-        build: ./php
-        volumes: 
-            - ./php/php.ini:/usr/local/etc/php/php.ini
-            - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
-            - ./www:/var/www/html 
-            # nginx和php必须同时映射才能通信
-
-            
-        environment: 
-            TZ: Asia/Shanghai
         restart: always
         networks:
             - default
