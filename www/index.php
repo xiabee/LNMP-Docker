@@ -9,17 +9,15 @@ if (mysqli_connect_errno($conn))
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    if (stristr($id, 'select') === false) {
-        $sql = "select * from users where id=$id";
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            $row = mysqli_fetch_array($result);
-            echo "<h3>" . $row['username'] . "</h3><br>";
-            echo "<h3>" . $row['passwd'] . "</h3>";
-        }
-        else {
-            die('<br>.Could not connect: '.mysqli_error($conn));
-        }
+    $sql = "select * from users where id=$id";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        $row = mysqli_fetch_array($result);
+        echo "<h3>" . $row['username'] . "</h3><br>";
+        echo "<h3>" . $row['passwd'] . "</h3>";
+    }
+    else {
+        die('<br>.Could not connect: '.mysqli_error($conn));
     }
 }
 mysqli_close($con); 
