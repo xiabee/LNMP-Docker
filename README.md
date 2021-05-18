@@ -21,8 +21,6 @@
 
   
 
-
-
 #### 使用方法
 
 * 将项目克隆到本地
@@ -30,11 +28,17 @@
 * 修改`docker-compose.yml`自定义文件映射和端口映射
 * 运行容器
 
+```bash
+git clone https://github.com/xiabee/LNMP-Docker
+cd LNMP-Docker
+docker-compose up -d
+```
+
 
 
 #### 容器使用相关：
 
-```
+```bash
 docker-compose up -d # 创建并开启容器项目
 docker-compose down  # 删除容器项目
 docker-compose ps    # 查看当前项目
@@ -42,9 +46,8 @@ docker-compose stop  # 停止运行
 docker-compose start # 开始运行
 docker-compose restart # 重启
 docker-compose rm    # 删除容器项目
+docker-compse --build# 重新构建
 ```
-
-
 
 
 
