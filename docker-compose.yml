@@ -29,13 +29,13 @@ services:
         restart: always
         networks:
             - default
+            
     mysql:
         links: 
             - php
         image: xiabee/mysql
-        build: ./mysql
         volumes: 
-            - ./mysql/mysql.cnf:/etc/mysql/my.cnf
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
             - "$PWD/FLAG:/etc/mysql/flag/flag:ro"
             # 挂载flag，设置为只读
             - ./mysql/init:/docker-entrypoint-initdb.d/

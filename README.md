@@ -1,7 +1,25 @@
-# docker-nginx_php_mysql
-#### 主要功能
+# LNMP-Docker
 
-自定义、一键式部署WEB环境，主要用于部署**PHP靶机**
+#### 项目描述
+
+* LNMP：Linux, nignx, mysql php 服务器
+* 主要用于一键式部署**WEB环境**，如**PHP靶机**等
+
+
+
+#### 站点根目录
+
+* 宿主机`./www`映射到容器`/var/www/html`
+
+
+
+#### 更新说明
+
+* 由于`libssl`官方源进行了一次大更新，最新版本的`libssl`会产生兼容性问题，无法编译PHP的`Dockerfile`，故在Dockerfile中手动安装了旧版本的`libssl`
+
+* 调整了目录结构，更新了数据库配置
+
+  
 
 
 
@@ -9,8 +27,8 @@
 
 * 将项目克隆到本地
 * 进入`www`文件夹，添加或修改内部的`.php`文件
-* 修改`www/include`文件夹内的`flag`文件（非CTF靶场环境可以直接删掉`flag`文件）
 * 修改`docker-compose.yml`自定义文件映射和端口映射
+* 运行容器
 
 
 
@@ -35,12 +53,12 @@ docker-compose rm    # 删除容器项目
 ```
 .
 ├── docker-compose.yml
-├── flag
+├── FLAG
 ├── mysql
 │   ├── init
 │   │   ├── privileges.sql
 │   │   └── schema.sql
-│   └── mysql.cnf
+│   └── my.cnf
 ├── nginx
 │   └── nginx.conf
 ├── php
@@ -49,16 +67,19 @@ docker-compose rm    # 删除容器项目
 │   └── php.ini
 ├── README.md
 └── www
-    ├── include
-    │   └── flag
+    ├── config.php
     └── index.php
 
-6 directories, 12 files
+5 directories, 12 files
 ```
 
 
 
-#### 站点目录:
+#### 文件说明
 
-`./www`
+* `docker-compose.yml`：项目编排文件
+* `mysql`：数据库相关
+  * `mysql.cnf`：
+
+
 
