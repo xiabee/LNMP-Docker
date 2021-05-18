@@ -2,7 +2,7 @@
 
 #### 项目描述
 
-* LNMP：Linux, nignx, mysql php 服务器
+* LNMP：Linux，nignx，mysql，php 服务器
 * 主要用于一键式部署**WEB环境**，如**PHP靶机**等
 
 
