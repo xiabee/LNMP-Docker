@@ -1,6 +1,8 @@
 version: "3"
 services:
     nginx:
+        links:
+            - php
         image: nginx:latest
         volumes:
             - ./nginx:/etc/nginx/conf.d
@@ -10,7 +12,7 @@ services:
         environment: 
             TZ: Asia/Shanghai
         ports:
-            - "9999:80"
+            - "80:80"
         networks:
             - default
     
@@ -20,20 +22,21 @@ services:
         volumes: 
             - ./php/php.ini:/usr/local/etc/php/php.ini
             - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
-            - ./www:/var/www/html 
+            - ./www:/var/www/html
             # nginx和php必须同时映射才能通信
-
-            
         environment: 
             TZ: Asia/Shanghai
         restart: always
         networks:
             - default
     mysql:
-        image: mysql:8.0.22
+        links: 
+            - php
+        image: xiabee/mysql
+        build: ./mysql
         volumes: 
             - ./mysql/mysql.cnf:/etc/mysql/my.cnf
-            - "$PWD/flag:/etc/mysql/flag/flag:ro"
+            - "$PWD/FLAG:/etc/mysql/flag/flag:ro"
             # 挂载flag，设置为只读
             - ./mysql/init:/docker-entrypoint-initdb.d/
             # docker-entrypoint-initdb.d目录下的文件会自动执行

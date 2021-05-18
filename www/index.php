@@ -1,10 +1,13 @@
 <?php
+include "./config.php";
 // error_reporting(0);
 highlight_file(__FILE__);
-$conn = mysqli_connect('mysql', 'test', 'test', 'security');
+
+$conn = mysqli_connect($hostname, $username, $password, $database);
+
 if (mysqli_connect_errno($conn)) 
 {
-    die("Could not connect, please wait a moment." . mysqli_connect_error()); 
+    die("Conneting, please wait a moment." . mysqli_connect_error()); 
 }  
 
 if (isset($_GET['id'])) {
