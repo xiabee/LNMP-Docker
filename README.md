@@ -78,8 +78,18 @@ docker-compose rm    # 删除容器项目
 #### 文件说明
 
 * `docker-compose.yml`：项目编排文件
-* `mysql`：数据库相关
-  * `mysql.cnf`：
+* `my.cnf`：自定义配置文件
+* `privileges.sql`：设置数据库用户权限
+* `schema.sql`：创建数据库表单等
+* `nginx.conf`：nginx自定义配置
+* `index.php`：站点首页
+* `config.php`：站点配置信息
 
 
+
+#### 常见问题
+
+* 数据库启动失败：
+  * 新版`mysql8`不允许高权限的用户配置文件，检查`my.cnf`文件权，过高则将其设置为`644`
+  * 不要在`Windows`目录下通过`WSL/WSL2`启动本项目......`Windows`目录下文件权限默认为`777`，会导致上述权限过高而无法启动`MySQL`的问题。正确的做法应该为在`WSL`的家目录中操作。
 
