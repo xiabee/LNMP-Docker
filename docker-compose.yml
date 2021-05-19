@@ -33,7 +33,7 @@ services:
     mysql:
         links: 
             - php
-        image: xiabee/mysql
+        image: mysql:latest
         volumes: 
             - ./mysql/my.cnf:/etc/mysql/my.cnf
             - "$PWD/FLAG:/etc/mysql/flag/flag:ro"
