@@ -46,7 +46,7 @@ docker-compose stop  # 停止运行
 docker-compose start # 开始运行
 docker-compose restart # 重启
 docker-compose rm    # 删除容器项目
-docker-compse --build# 重新构建
+docker-compse up -d --build # 重新构建
 ```
 
 
