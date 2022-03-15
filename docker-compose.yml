@@ -17,7 +17,7 @@ services:
             - default
     
     php:
-        image: xiabee/php7.3-fpm
+        image: xiabee/php8-fpm
         build: ./php
         volumes: 
             - ./php/php.ini:/usr/local/etc/php/php.ini
@@ -41,8 +41,8 @@ services:
             - ./mysql/init:/docker-entrypoint-initdb.d/
             # docker-entrypoint-initdb.d目录下的文件会自动执行
         environment: 
-            MYSQL_ROOT_PASSWORD: Xiao
-            # 设置管理员密码
+            MYSQL_RANDOM_ROOT_PASSWORD: 1
+            # 设置管理员随机密码
             MYSQL_USER: test
             MYSQL_PASSWORD: test
             # 创建用户

@@ -1,14 +1,12 @@
 <?php
 include "./config.php";
-// error_reporting(0);
+//error_reporting(0);
 highlight_file(__FILE__);
 
-$conn = mysqli_connect($hostname, $username, $password, $database);
-
-if (mysqli_connect_errno($conn)) 
-{
-    die("Conneting, please wait a moment." . mysqli_connect_error()); 
-}  
+$conn = new mysqli($hostname, $username, $password, $database);
+   if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];

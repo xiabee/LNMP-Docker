@@ -2,24 +2,18 @@
 
 #### 项目描述
 
-* LNMP：Linux，nignx，mysql，php 服务器
+* LNMP：`Linux`+`nignx`+`mysql`+`php` 服务器
 * 主要用于一键式部署**WEB环境**，如**PHP靶机**等
-
-
 
 #### 站点根目录
 
 * 宿主机`./www`映射到容器`/var/www/html`
 
-
-
 #### 更新说明
 
-* 由于`libssl`官方源进行了一次大更新，最新版本的`libssl`会产生兼容性问题，无法编译PHP的`Dockerfile`，故在Dockerfile中手动安装了旧版本的`libssl`
+* `php`版本升级至`8-fpm`
 
 * 调整了目录结构，更新了数据库配置
-
-  
 
 #### 使用方法
 
@@ -34,8 +28,6 @@ cd LNMP-Docker
 docker-compose up -d
 ```
 
-
-
 #### 容器使用相关：
 
 ```bash
@@ -48,8 +40,6 @@ docker-compose restart # 重启
 docker-compose rm    # 删除容器项目
 docker-compse up -d --build # 重新构建
 ```
-
-
 
 #### 目录结构
 
@@ -76,8 +66,6 @@ docker-compse up -d --build # 重新构建
 5 directories, 12 files
 ```
 
-
-
 #### 文件说明
 
 * `docker-compose.yml`：项目编排文件
@@ -88,11 +76,8 @@ docker-compse up -d --build # 重新构建
 * `index.php`：站点首页
 * `config.php`：站点配置信息
 
-
-
 #### 常见问题
 
 * 数据库启动失败：
   * 新版`mysql8`不允许高权限的用户配置文件，检查`my.cnf`文件权，过高则将其设置为`644`
   * 不要在`Windows`目录下通过`WSL/WSL2`启动本项目......`Windows`目录下文件权限默认为`777`，会导致上述权限过高而无法启动`MySQL`的问题。正确的做法应该为在`WSL`的家目录中操作。
-
