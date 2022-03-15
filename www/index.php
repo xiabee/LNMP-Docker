@@ -1,11 +1,12 @@
 <?php
 include "./config.php";
-//error_reporting(0);
+error_reporting(-1);
 highlight_file(__FILE__);
 
-$conn = new mysqli($hostname, $username, $password, $database);
-   if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$conn = mysqli_connect($hostname, $username, $password, $database);
+   if ($conn->connect_errno) {
+    die("Connection failed: " . $conn->connect_errno);
+    # php版本升级，报错处理暂时没有处理好
 } 
 
 if (isset($_GET['id'])) {
@@ -18,7 +19,8 @@ if (isset($_GET['id'])) {
         echo "<h3>" . $row['passwd'] . "</h3>";
     }
     else {
-        die('<br>.Could not connect: '.mysqli_error($conn));
+        die('<br>.Could not connect: '.mysqli_errno($conn));
+        # php版本升级，报错处理暂时没有处理好
     }
 }
 mysqli_close($con); 
